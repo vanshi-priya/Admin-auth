@@ -35,6 +35,9 @@ const Dashboard = () => {
 
   const handleSectionChange = (section) => {
     setActiveSection(section);
+    if (window.innerWidth < 1024) {
+      setIsSidebarOpen(false);
+    }
   };
 
   return (
@@ -91,7 +94,10 @@ const Dashboard = () => {
             >
               Reports
             </li>
-            <li className="text-gray-700 hover:bg-gray-200 p-2 rounded-lg cursor-pointer">
+            <li
+              className="text-gray-700 hover:bg-gray-200 p-2 rounded-lg cursor-pointer"
+              onClick={() => handleSectionChange("settings")}
+            >
               Settings
             </li>
           </ul>
