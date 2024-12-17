@@ -102,7 +102,6 @@ const SearchPage = ({ setFilteredData }) => {
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             CLI:
@@ -147,21 +146,32 @@ const SearchPage = ({ setFilteredData }) => {
         Search
       </button>
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-6 overflow-x-auto">
         {filteredData.length > 0 ? (
-          currentItems.map((item, index) => (
-            <div key={index} className="border-b border-gray-200 pb-4">
-              <div className="text-lg font-semibold text-gray-800">
-                {item.phone} - {item.cli}
-              </div>
-              <div className="text-sm text-gray-600">
-                <strong>Start Date:</strong> {formatDate(item.start_date)}
-              </div>
-              <div className="text-sm text-gray-600">
-                <strong>End Date:</strong> {formatDate(item.end_date)}
-              </div>
-            </div>
-          ))
+          <table className="min-w-full table-auto">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 border-b">Phone</th>
+                <th className="px-4 py-2 border-b">CLI</th>
+                <th className="px-4 py-2 border-b">Start Date</th>
+                <th className="px-4 py-2 border-b">End Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.map((item, index) => (
+                <tr key={index} className="hover:bg-gray-100">
+                  <td className="px-4 py-2 border-b">{item.phone}</td>
+                  <td className="px-4 py-2 border-b">{item.cli}</td>
+                  <td className="px-4 py-2 border-b">
+                    {formatDate(item.start_date)}
+                  </td>
+                  <td className="px-4 py-2 border-b">
+                    {formatDate(item.end_date)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         ) : (
           <div className="text-center text-gray-500">
             No matching results found
